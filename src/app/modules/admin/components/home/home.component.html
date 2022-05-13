@@ -1,0 +1,62 @@
+<div class="container tm-mt-big tm-mb-big">
+   <div class="row">
+     <div class="col-xl-12 col-lg-15 col-md-12 col-sm-12 mx-auto">
+       <div class="tm-bg tm-block tm-block-h-auto">
+         <div class="row">
+           </div>
+           <div class="row tm-edit-product-row">
+                   <div class="col-md-12">
+                     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                        <h2 class="tm-block-title"><i class="fa-solid fa-cart-flatbed"></i> ADD A NEW PRODUCT</h2>
+                           <div class="form-group mb-3">
+                               <label
+                                   for="category">Product Category
+                               </label>
+                               <input type="text" placeholder="Enter Product Category" id="category" formControlName="category" class="form-control validate"
+                               required/>
+                           </div>
+   
+                           <div class="form-group mb-3">
+                               <label
+                                   for="name">Product Name
+                               </label>
+                               <input type="text" placeholder="Enter Product Name" id="name" formControlName="name" class="form-control validate"
+                               required/>
+                           </div>
+   
+                           <div class="form-group mb-3">
+                               <label
+                                   for="url">Product URL
+                               </label>
+                               <input type="text" placeholder="Enter Product Picture URL" id="url" formControlName="url" class="form-control validate" 
+                               required/>
+                           </div>
+   
+                           <!-- price & stock -->
+                           <div class="row">
+                               <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                   <label
+                                       for="price">Product Price
+                                   </label>
+                                   <input type="number" placeholder="Enter Product Price" id="price" formControlName="price" class="form-control validate"
+                                   required/>
+                               </div>
+   
+                               <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                   <label
+                                   for="stock">Product Stock
+                                   </label>
+                                   <input type="number" placeholder="Enter Product Stock" id="stock" formControlName="stock" class="form-control validate"
+                                   required/>
+                               </div>
+                           </div>
+                               <!-- SUBMIT BTN -->
+                               <button name="add_product" type="submit" value="add_product" class="btn-addp btn-block text-uppercase">Add Product Now</button>
+                       </form>
+                   </div>
+            </div>
+       </div>
+   </div>
+   </div> <!-- row end -->
+   </div> <!-- container end -->
+     <router-outlet></router-outlet>

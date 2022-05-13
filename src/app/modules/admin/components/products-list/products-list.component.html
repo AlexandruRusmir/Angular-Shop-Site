@@ -1,0 +1,24 @@
+<body>
+    <div style="margin-top: 50px;">
+        <h1 style="text-align:center">Product Table</h1>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let product of Products">
+                    <td><img src="{{product.pictureURL}}" height=100 width=100 class="center" style="border-radius:50%"/></td>
+                    <td>{{product.partitionKey}}</td>
+                    <td>{{product.rowKey}}</td>
+                    <td>{{product.price}}$</td>
+                    <td>{{product.quantity}}</td>
+                    <td style="background:none"><button (click)="deleteProduct(product.partitionKey, product.rowKey)" class="deleteBtn"><i class="fa fa-minus-circle" aria-hidden="true"></i> Delete </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

@@ -1,0 +1,29 @@
+<div class="container vh-100" style="width: 40%; margin-left: 30%;">
+    <div class="row justify-content-center h-100">
+        <div class="card my-auto shadow">
+            <div class="card-body px-5">
+                <div class="text-center">
+                    <fa-icon [icon]="faLock" class="fa-2x"></fa-icon>
+                </div>
+                <div class="text-center">
+                    <h2>Welcome</h2>
+                </div>
+                <p style="color: lightslategray; text-align: center;">
+                    Please enter your login
+                </p>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="txt_field">
+                        <input type="email" id="email" placeholder="Email" formControlName="email"
+                            name="email" />
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" id="password" placeholder="Password"
+                            formControlName="password" name="password" />
+                    </div>
+                    <input type="submit" class="btn btn-primary w-100" style="margin-top: 4%; margin-bottom: 10%;"value="Login" name="">
+                    <label>Don't have an account?</label> <a class="nav-link" routerLink="../register">Register here!</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

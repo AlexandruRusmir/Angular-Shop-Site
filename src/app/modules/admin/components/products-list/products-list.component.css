@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter&family=Comforter+Brush&family=Poppins:wght@200&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+table, th, td {
+    border: 5px solid white;
+    align-items: center;
+    border-collapse: collapse;
+}
+
+table{
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+}
+
+th{
+    text-align:center;
+    color:white;
+    background-color:rgba(0, 0, 0, 0.815);
+    height: 35px;
+}
+
+td{
+    text-align: center;
+    background-color: #40c9a2;
+    font-weight: bolder;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.deleteBtn{
+    background-color: rgb(191, 32, 32);
+    font-weight: bold;
+    border-radius: 10%;
+    border-color: rgba(0, 0, 0, 0.481);
+    color:white;
+}
+.deleteBtn:hover{
+    background-color: rgb(246, 52, 52);
+}
