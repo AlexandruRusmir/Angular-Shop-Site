@@ -14,22 +14,29 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="txt_field">
                         <input type="text" id="username" placeholder="Username" formControlName="username"
-                            name="username" />
+                            name="username" required/>
                     </div>
                     <div class="txt_field">
                         <input type="email" id="email" placeholder="Email" formControlName="email"
-                            name="email" />
+                            name="email" required/>
+                    </div>
+                    <div class="txt_field">
+                        <input type="text" id="phone" placeholder="Phone number" formControlName="phone"
+                            name="phone" required/>
                     </div>
                     <div class="txt_field">
                         <input type="password" id="password" placeholder="Password"
-                            formControlName="password" name="password" />
+                            formControlName="password" name="password" required/>
                     </div>
                     <div class="txt_field">
                         <input type="password" id="confirmPassword" placeholder="Confirm Password"
-                            formControlName="confirmPassword" name="confirmPassword" />
+                            formControlName="confirmPassword" name="confirmPassword" required/>
                     </div>
+                    
+                    <p style="color: red;">{{userMessage}}</p> <!--mesaj daca e-mailul e luat sau nu a scris aceeasi parola-->
+
                     <input type="submit" class="btn btn-primary w-100" style="margin-top: 4%; margin-bottom: 10%;"value="Login" name="">
-                        <label style="display: inline-flex;">Already have an account? <a class="nav-link" routerLink="../login"> &nbsp;Login here!</a></label> 
+                        <label class="text_regist">Already have an account? <a class="navlink" routerLink="../login"> &nbsp;Login here!</a></label> 
                 </form>
             </div>
         </div>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/Product';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { RestService } from 'src/app/rest.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { RestService } from '../../../../rest.service';
+import { AuthService } from '../../../../services/auth.service';
+import { Product } from '../../../../models/Product';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { SharedService } from '../../../../shared/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -11,36 +13,51 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  productForm = new FormGroup({
-    category: new FormControl(''),
-    name: new FormControl(''),
-    price: new FormControl(''),
-    stock: new FormControl(''),
-    url: new FormControl('')
-  })
 
-  constructor(private rs: RestService) { 
-
+  constructor(private rs: RestService, private shared: SharedService) { 
   }
+
+  faMinusCircle = faMinusCircle;
+  Products: Product[] = [
+  ];
+  cartProducts:  Product[] = [
+  ];
+  cartProductsQuantity: number[] = [    
+  ];
 
   ngOnInit(): void {
+    this.rs.getProducts().subscribe(
+      (Response) => {
+        console.log(Response);
+        this.Products = Response;
+      }, (error) => {
+        console.log("Eroare!");
+      }
+    );
   }
 
-  onSubmit(): void{
-    if(this.productForm.valid){
-      console.log(new Product(this.productForm.value.category, this.productForm.value.name, this.productForm.value.stock, 
-        this.productForm.value.price, this.productForm.value.url));
-          this.rs.postProduct(new Product(this.productForm.value.category, this.productForm.value.name, this.productForm.value.stock, 
-            this.productForm.value.price, this.productForm.value.url)).subscribe(
-            (Response) => {
-              console.log(Response);
-
-            }, (error) => {
-              console.log("Eroare la post!");
-            }
-          );
-          //window.location.reload();
+  addProductToCart(product: Product): void {
+    if(this.findProductPositionInArray(product, this.cartProducts) === - 1) {
+      this.cartProductsQuantity.push(1);
+      this.cartProducts.push(product); 
+      return;
     }
 
+    this.cartProductsQuantity[this.findProductPositionInArray(product, this.cartProducts)] += 1;
+      
+  }
+
+  checkout(): void {
+    this.shared.setArrays(this.cartProducts, this.cartProductsQuantity);
+    
+  }
+
+  findProductPositionInArray(product: Product, productArray: Product[]): number {
+    for(let i = 0; i < productArray.length; i++) {
+      if(product == productArray[i])
+        return i;
+    }
+
+    return -1;
   }
 }

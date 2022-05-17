@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/Product';
-import { RestService } from 'src/app/rest.service';
+import { RestService } from '../../../../rest.service';
+import { Product } from '../../../../models/Product';
+import { SharedService } from '../../../../shared/shared.service';
+import { share } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
@@ -9,33 +11,35 @@ import { RestService } from 'src/app/rest.service';
 })
 export class ProductsListComponent implements OnInit {
 
-  constructor(private rs: RestService) { 
+  constructor(private rs: RestService, private shared: SharedService) { 
   }
 
 
-  Products: Product[] = [
+  cartProducts:  Product[] = [
+  ];
+  cartProductsQuantity: number[] = [    
   ];
 
-  ngOnInit(): void {
-    this.rs.getProducts().subscribe(
-      (Response) => {
-        console.log(Response);
-        this.Products = Response;
-      }, (error) => {
-        console.log("Eroare!");
-      }
-    );
+  ngOnInit(): void 
+  {
+    if(this.shared.getProductsArray().length) {
+      this.cartProducts = this.shared.getProductsArray();
+      this.cartProductsQuantity = this.shared.getQuantityArray();
+    }
   }
 
-  deleteProduct(partitionKey: String, rowKey: String): void {
-    this.rs.deleteProductf(partitionKey, rowKey).subscribe(
-      (Response) => {
-        console.log(Response);
-      }, (error) => {
-        console.log("Eroare!");
-      }
-    );
-    
-    window.location.reload();
+  confirmOrder(): void 
+  {
+    for(let i=0; i < this.cartProducts.length; i++) {
+      this.rs.updateProductQuantity(this.cartProducts[i], this.cartProductsQuantity[i]).subscribe(
+        (Response) => {
+          console.log(Response);
+        }, (error) => {
+          console.log("Eroare!");
+        }
+      );
+    }
+
+    window.setTimeout(function(){location.reload()},3000)
   }
 }

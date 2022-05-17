@@ -11,6 +11,7 @@ body{
   background: linear-gradient(#40c9a2, #1a8f52);
   height: 100vh;
   overflow: hidden;
+  background: linear-gradient(#328a72, rgb(255, 255, 255));
 }
 .center{
   position: absolute;
@@ -31,6 +32,21 @@ body{
 .center form{
   padding: 0 40px;
   box-sizing: border-box;
+}
+
+.navlink{
+    display:block;
+    padding:none;
+}
+.text_login{
+    display: inline-flex; 
+    vertical-align:middle;
+    text-align:center;
+    margin-left: 70px;
+    margin-bottom: 15px;
+}
+.text-center{
+  margin-top: 10px;
 }
 form .txt_field{
   position: relative;

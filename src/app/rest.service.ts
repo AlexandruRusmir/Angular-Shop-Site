@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { Product } from "./models/Product";
-//import {User}
-
+import { User } from "./models/User";
 @Injectable ({providedIn: 'root'})
 
 export class RestService {
-    urlProduct: string = "https://proiectcolectiv.azurewebsites.net/Products";
-
+    urlProduct: string = "https://proiectcolectivapi.azurewebsites.net/Products";
+    urlUser: string = "https://proiectcolectivapi.azurewebsites.net/Users";
 
     constructor(private http: HttpClient) {
     }
@@ -31,5 +30,13 @@ export class RestService {
     updateProductQuantity(prod: Product, removedQuantity: number) {
         prod.quantity -= removedQuantity;
         return this.http.put<Product>(this.urlProduct, prod);
+    }
+
+    getUsers() {
+        return this.http.get<User[]>(this.urlUser);
+    }
+
+    postUser(user: User) {
+        return this.http.post(this.urlUser, user);
     }
 }
