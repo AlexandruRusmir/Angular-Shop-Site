@@ -3,6 +3,13 @@ import { RestService } from '../../../../rest.service';
 import { Product } from '../../../../models/Product';
 import { SharedService } from '../../../../shared/shared.service';
 import { share } from 'rxjs';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ThisReceiver } from '@angular/compiler';
+
+
 
 @Component({
   selector: 'app-products-list',
@@ -15,6 +22,7 @@ export class ProductsListComponent implements OnInit {
   }
 
 
+  totalValue: number = 0;
   cartProducts:  Product[] = [
   ];
   cartProductsQuantity: number[] = [    
@@ -26,6 +34,13 @@ export class ProductsListComponent implements OnInit {
       this.cartProducts = this.shared.getProductsArray();
       this.cartProductsQuantity = this.shared.getQuantityArray();
     }
+    if(!this.cartProducts || !this.cartProductsQuantity) {
+      window.setTimeout(function(){location.reload()},500)
+    }
+
+    for(let i=0; i < this.cartProducts.length; i++) {
+      this.totalValue += this.cartProducts[i].price * this.cartProductsQuantity[i];
+    }
   }
 
   confirmOrder(): void 
@@ -34,12 +49,12 @@ export class ProductsListComponent implements OnInit {
       this.rs.updateProductQuantity(this.cartProducts[i], this.cartProductsQuantity[i]).subscribe(
         (Response) => {
           console.log(Response);
+          alert('Order placed!');
+          window.setTimeout(function(){location.replace('http://localhost:4200/admin/home')},3000)
         }, (error) => {
           console.log("Eroare!");
         }
       );
     }
-
-    window.setTimeout(function(){location.reload()},3000)
   }
 }

@@ -1,40 +1,40 @@
-<body>
-    <div style="margin-top: 50px;">
-        <div class="row">
-            <div class="col-10">
-                <table>
-                    <tr>
-                        <th>Product</th>
-                        <th>Category</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
+<div class="confirm_page">
+    <div class="row-fluid" style="display:inline-flex">
+        <div class="col-8" >
+            <table >
+                <tr>
+                    <th>Product</th>
+                    <th style="width: 500px;">Category</th>
+                    <th style="width: 500px;">Name</th>
+                    <th style="width: 150px;">Price</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let product of cartProducts">
+                        <td><img src="{{product.pictureURL}}" height=100 width=100 class="center" style="border-radius:50%"/></td>
+                        <td>{{product.partitionKey}}</td>
+                        <td>{{product.rowKey}}</td>
+                        <td>{{product.price}}$</td>
                     </tr>
-                    <tbody>
-                        <tr *ngFor="let product of cartProducts">
-                            <td><img src="{{product.pictureURL}}" height=100 width=100 class="center" style="border-radius:50%"/></td>
-                            <td>{{product.partitionKey}}</td>
-                            <td>{{product.rowKey}}</td>
-                            <td>{{product.price}}$</td>
-                            <td>{{product.quantity}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-1">
-                <table>
-                    <tr>
-                        <th>Quantity</th>
-                    </tr>
-                    <tbody>
-                        <tr *ngFor="let quantity of cartProductsQuantity">
-                            <td style="height: 100px;">{{quantity}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> 
+                </tbody>
+            </table>
         </div>
-
-        <button style="display: flex; margin: 0 auto; " (click)="confirmOrder()">Confirm order</button>
+        
+        <table>
+            <tr>
+                <th>Quantity</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let quantity of cartProductsQuantity">
+                    <td style="height: 103px;">{{quantity}}</td>
+                </tr>
+            </tbody>
+        </table>
+       
+        
     </div>
-</body>
+
+    <div style="margin-top: 3rem;">
+        <button style="margin: 0 auto;" (click)="confirmOrder()">Confirm order {{totalValue}}$</button>
+    </div>
+    
+</div>

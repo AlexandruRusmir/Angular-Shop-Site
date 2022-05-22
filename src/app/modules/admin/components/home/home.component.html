@@ -1,17 +1,54 @@
-<body>
-    <div style="margin-top: 50px;">
-        <h1 style="text-align:center">Welcome to the shop!</h1>
-        <div>
-            <button (click)="checkout()" style="margin-left: 80%;" routerLink="../products-list">Proceed to checkout ({{cartProducts.length}})</button>
+<div class = "products" style="margin-bottom: 100px;">
+    <div class = "container">
+        <h1 class = "lg-title">Check our products out</h1>
+        <p class = "text-light">BioNow wants to make sustainable shopping so easy everyone does it. Shop eco-friendly products on the one-stop shop for everyone who loves the planet!</p>
+        <div class = "product-items">
+            <!-- single product -->
+            <div class = "product" *ngFor="let product of Products">
+                <div class = "product-content">
+                    <div class = "product-img">
+                        <img src = "{{product.pictureURL}}" alt = "product image"  height="200px" >
+                    </div>
+                    <div class = "product-btns">
+                        <button (click)="addProductToCart(product)" type = "button" class = "btn-cart" > add to cart
+                            <span><i class = "fas fa-plus"></i></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class = "product-info">
+                    <div class = "product-info-top">
+                        <h2 class = "sm-title">Available: {{product.quantity}}</h2>
+                        <div class = "rating">
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "far fa-star"></i></span>
+                        </div>
+                    </div>
+                    <a href = "#" class = "product-name">Product: {{product.rowKey}}</a>
+                    <p class = "product-price">Price: {{product.price}}$</p>
+                    <!-- <p class = "product-price">$ 133.00</p> -->
+                </div>
+
+                <!-- <div class = "off-info">
+                    <h2 class = "sm-title">25% off</h2>
+                </div> -->
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
         </div>
-        <div class="row">
-            <div class='col-4' *ngFor="let product of Products">
-                <img src="{{product.pictureURL}}" height=100 width=100 class="center" style="border-radius:50%"/>
-                <p>Product: {{product.rowKey}}</p>
-                <p>Price: {{product.price}}$</p>
-                <p>Available: {{product.quantity}}</p>
-                <button (click)="addProductToCart(product)" class="deleteBtn"> Add to cart </button>
+        <div class = "flex" style="height: 20rem;">
+            <div class = "product-col-content">
+                <!-- <h2 class = "sm-title">is your cart ready? </h2> -->
+                <h2 class = "md-title">Place your order</h2>
+                <p style="color:rgb(225, 192, 154)" height="500px">&#8681;</p>
+                <button (click)="checkout()" routerLink="../products-list" 
+                type = "button" class = "btn_dark">Checkout ({{cartProducts.length}})</button>
             </div>
         </div>
     </div>
-</body>
+</div>
+
+<router-outlet></router-outlet>

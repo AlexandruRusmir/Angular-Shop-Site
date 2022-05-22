@@ -1,36 +1,36 @@
- <!-- BANNER -->
- <div class="container-fluid h-100 px-0">
+<!-- BANNER -->
+<div class="container-fluid h-100 px-0">
     <div class="row mx-0">
         <div class="col p-0">
-            <div class="banner">
-                <div class="container ml-0">
-                    <div class="title">
-                        <img src="assets/images/admin.png" alt="banner image"/>
-                        <h1> Welcome to the Admin Page!</h1>
-                    </div>
-                    <!-- <h1 class="d-inline-block mr-1"> Welcome to the Admin Page!</h1> -->
-    </div>
-</div>
+            <div class="banner" style="background-image: 'assets/images/banner.jpg';">
+                <img src="assets/images/logo_BioNow5.jpg" alt="Logo">
+                <div class="title">
+                  <h1>Welcome to our shop</h1>
+                  <h2>Let's save this planet while we still can!</h2>
+                </div>
+              </div>
 
 <!-- NAVBAR -->
 <div class="navbar navbar-expand-sm navbar-light" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="padding-top: 5px; padding-bottom:5px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="./home">Home</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="./users-list">Users list</a>
+                    <a class="nav-link" routerLink="./users-list">About</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="./contact">Contact</a>
                 </li>
             </ul>
+
             <div style="margin-left: auto; margin-right: 20px" class="navbar-nav text-white ml-auto" role="button">
                 <a class="nav-link logout" (click)="logout()"><img src="assets/images/exit.png" height="25px" width="auto"/> <a style="margin-left: 10px; color: black;">logout</a></a>
             </div>
-        </div>
-    </div>
+</div> <!-- navbar end -->
+
+</div>
 </div>
 </div>
 
