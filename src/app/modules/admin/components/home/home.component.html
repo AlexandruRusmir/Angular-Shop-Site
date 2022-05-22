@@ -10,7 +10,7 @@
                         <img src = "{{product.pictureURL}}" alt = "product image"  height="200px" >
                     </div>
                     <div class = "product-btns">
-                        <button (click)="addProductToCart(product)" type = "button" class = "btn-cart" > add to cart
+                        <button (click)="addProductToCart(product)" type = "button" class = "btn-cart" > + add to cart
                             <span><i class = "fas fa-plus"></i></span>
                         </button>
                     </div>
@@ -39,16 +39,16 @@
             <!-- end of single product -->
             <!-- single product -->
         </div>
-        <div class = "flex" style="height: 20rem;">
-            <div class = "product-col-content">
-                <!-- <h2 class = "sm-title">is your cart ready? </h2> -->
-                <h2 class = "md-title">Place your order</h2>
-                <p style="color:rgb(225, 192, 154)" height="500px">&#8681;</p>
-                <button (click)="checkout()" routerLink="../products-list" 
-                type = "button" class = "btn_dark">Checkout ({{cartProducts.length}})</button>
-            </div>
-        </div>
+        
     </div>
 </div>
-
+<div class = "flex" style="height: 20rem; padding-bottom: 130px;">
+    <div class = "product-col-content">
+        <!-- <h2 class = "sm-title">is your cart ready? </h2> -->
+        <h2 class = "md-title">Place your order</h2>
+        <p style="color:rgb(225, 192, 154)" height="500px">&#8681;</p>
+        <button (click)="checkout()" routerLink="../products-list" 
+        type = "button" class = "btn_dark">Checkout ({{cartProducts.length}})</button>
+    </div>
+</div>
 <router-outlet></router-outlet>

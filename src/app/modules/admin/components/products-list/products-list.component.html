@@ -25,7 +25,7 @@
             </tr>
             <tbody>
                 <tr *ngFor="let quantity of cartProductsQuantity">
-                    <td style="height: 103px;">{{quantity}}</td>
+                    <td style="height: 100px;">{{quantity}}</td>
                 </tr>
             </tbody>
         </table>
@@ -34,7 +34,7 @@
     </div>
 
     <div style="margin-top: 3rem;">
-        <button style="margin: 0 auto;" (click)="confirmOrder()">Confirm order {{totalValue}}$</button>
+        <button style="margin: 0 auto;" (click)="confirmOrder()">Confirm order {{totalValueString}}$</button>
     </div>
     
 </div>

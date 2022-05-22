@@ -23,6 +23,7 @@ export class ProductsListComponent implements OnInit {
 
 
   totalValue: number = 0;
+  totalValueString: String = '';
   cartProducts:  Product[] = [
   ];
   cartProductsQuantity: number[] = [    
@@ -35,11 +36,12 @@ export class ProductsListComponent implements OnInit {
       this.cartProductsQuantity = this.shared.getQuantityArray();
     }
     if(!this.cartProducts || !this.cartProductsQuantity) {
-      window.setTimeout(function(){location.reload()},500)
+      window.setTimeout(function(){location.replace('http://localhost:4200/admin/home')},500)
     }
 
     for(let i=0; i < this.cartProducts.length; i++) {
       this.totalValue += this.cartProducts[i].price * this.cartProductsQuantity[i];
+      this.totalValueString = this.totalValue.toFixed(2);
     }
   }
 
