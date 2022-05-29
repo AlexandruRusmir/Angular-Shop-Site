@@ -8,6 +8,9 @@ import { HomeComponent } from '../home/home.component';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ThisReceiver } from '@angular/compiler';
+import { MailMessage } from 'src/app/models/MailMessage';
+import { AuthService } from 'src/app/services/auth.service';
+import { EmailValidator } from '@angular/forms';
 
 
 
@@ -18,7 +21,7 @@ import { ThisReceiver } from '@angular/compiler';
 })
 export class ProductsListComponent implements OnInit {
 
-  constructor(private rs: RestService, private shared: SharedService) { 
+  constructor(private rs: RestService, private shared: SharedService, private auth: AuthService) { 
   }
 
 
@@ -52,11 +55,24 @@ export class ProductsListComponent implements OnInit {
         (Response) => {
           console.log(Response);
           alert('Order placed!');
-          window.setTimeout(function(){location.replace('http://localhost:4200/admin/home')},3000)
         }, (error) => {
           console.log("Eroare!");
         }
       );
     }
+
+    
+    this.rs.postEmail(new MailMessage(this.auth.getUsername(), this.auth.getEmail(),
+          this.cartProducts, this.cartProductsQuantity)).subscribe(
+            (Response) => {
+              console.log(new MailMessage(this.auth.getUsername(), this.auth.getEmail(),
+              this.cartProducts, this.cartProductsQuantity));
+              
+              console.log(Response);
+              //window.setTimeout(function(){location.replace('http://localhost:4200/admin/home')},3000)
+            }, (error) => {
+              console.log("Eroare!");
+            }
+          );
   }
 }

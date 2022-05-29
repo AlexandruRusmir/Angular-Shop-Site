@@ -21,6 +21,13 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getEmail(): string {
+    return String(localStorage.getItem('email'));
+  }
+  getUsername(): string{
+    return String(localStorage.getItem('username'));
+  }
+
   isLoggedIn() {
     return this.getToken() !== null;
   }
@@ -31,6 +38,9 @@ export class AuthService {
   }
 
   login(email: string, username: string): Observable<any> {
+    localStorage.setItem('email', email);
+    localStorage.setItem('username', username);
+
     this.setToken('ok');
     return of({ username, email });
 }

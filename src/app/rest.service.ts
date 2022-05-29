@@ -2,11 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { Product } from "./models/Product";
 import { User } from "./models/User";
+import { MailMessage } from "./models/MailMessage";
+
 @Injectable ({providedIn: 'root'})
 
 export class RestService {
     urlProduct: string = "https://proiectcolectivapi.azurewebsites.net/Products";
     urlUser: string = "https://proiectcolectivapi.azurewebsites.net/Users";
+    urlMail: string = "https://proiectcolectivapi.azurewebsites.net/Emails";
 
     constructor(private http: HttpClient) {
     }
@@ -38,5 +41,9 @@ export class RestService {
 
     postUser(user: User) {
         return this.http.post(this.urlUser, user);
+    }
+
+    postEmail(mail: MailMessage) {
+        return this.http.post(this.urlMail, mail);
     }
 }

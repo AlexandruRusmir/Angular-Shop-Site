@@ -14,7 +14,7 @@ import { SharedService } from '../../../../shared/shared.service';
 export class HomeComponent implements OnInit {
 
 
-  constructor(private rs: RestService, private shared: SharedService) { 
+  constructor(private rs: RestService, private shared: SharedService, private auth: AuthService) { 
   }
 
   faMinusCircle = faMinusCircle;
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   cartProductsQuantity: number[] = [    
   ];
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.rs.getProducts().subscribe(
       (Response) => {
         console.log(Response);
